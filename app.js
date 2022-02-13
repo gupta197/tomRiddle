@@ -9,12 +9,14 @@ app.use(bodyParser.json());
 //support parsing of application/x-www-form-urlencoded post data
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Home Page Url
 app.get("/", (req, res) => {
   const value1 = 20;
   const value2 = 79;
   const sum = value1 + value2;
   return res.send("Welcome Tom Riddle");
 });
+// Sume Of 2 number
 app.post("/sum", (req, res) => {
   try {
     const { value1, value2 } = req.body;
@@ -34,6 +36,7 @@ app.post("/sum", (req, res) => {
    return res.send(`Something Went Wrong ${error.message}`);
   }
 });
+// Register Users
 app.post("/register", (req, res) => {
   const { email, password, firstName, lastName, address } = req.body;
   try {
@@ -73,6 +76,7 @@ app.post("/register", (req, res) => {
     });
   }
 });
+// Get ALl Users
 app.get("/users", (req, res) => {
   try {
     if (!registerUser.length) {
@@ -91,6 +95,7 @@ app.get("/users", (req, res) => {
     });
   }
 });
+// User Login API
 app.post("/login", (req, res) => {
   try {
     const { email, password } = req.body;
@@ -125,10 +130,13 @@ app.post("/login", (req, res) => {
     });
   }
 });
+
+// URL not Found Api
 app.get("**", (req, res) => {
   return res.send({ status: 503, message: `Page Not Found` });
 });
 
+// Server Port Listen 
 app.listen(8080, () => {
   const portListenUrl = `http://localhost:8080`;
   console.log("app listen on this port = ", portListenUrl);
