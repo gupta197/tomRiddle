@@ -16,10 +16,11 @@ app.get("/", (req, res) => {
   const sum = value1 + value2;
   return res.send("Welcome Tom Riddle");
 });
-// Sume Of 2 number
+// Sum Of 2 number
 app.post("/sum", (req, res) => {
   try {
     const { value1, value2 } = req.body;
+    console.log(value1,value2)
     if (
       value1 &&
       value2 &&
