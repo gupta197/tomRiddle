@@ -6,31 +6,6 @@ const express = require("express"),
 var connection = require("./database/database");
 // var userModel = require('./model/users');
  
- 
-/* GET home page. */
-// router.get('/', function(req, res, next) {
-      
-//     userModel.find((err, docs) => {
-//         if (!err) {
-//             res.render("list", {
-//                 data: docs
-//             });
-//         } else {
-//             console.log('Failed to retrieve the Course List: ' + err);
-//         }
-//     });
- 
-// });
-// module.exports = router;
-// mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true});
-// var conn = mongoose.connection;
-// conn.on('connected', function() {
-//     console.log('database is connected successfully');
-// });
-// conn.on('disconnected',function(){
-//     console.log('database is disconnected successfully');
-// })
-// conn.on('error', console.error.bind(console, 'connection error:'));
 
 // support parsing of application/json type post data
 app.use(bodyParser.json());
