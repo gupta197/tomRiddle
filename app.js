@@ -2,10 +2,9 @@ const express = require("express"),
   app = express(),
   bodyParser = require("body-parser"),
   registerUser = [],
-   mongo = require('mongodb');
-var connection = require("./database/database");
+  mongo = require("mongodb"),
+  connection = require("./database/database");
 // var userModel = require('./model/users');
- 
 
 // support parsing of application/json type post data
 app.use(bodyParser.json());
@@ -24,7 +23,7 @@ app.get("/", (req, res) => {
 app.post("/sum", (req, res) => {
   try {
     const { value1, value2 } = req.body;
-    console.log(value1,value2)
+    console.log(value1, value2);
     if (
       value1 &&
       value2 &&
@@ -38,7 +37,7 @@ app.post("/sum", (req, res) => {
     }
     return res.send({ status: 400, message: "Missing Parameters..." });
   } catch (error) {
-   return res.send(`Something Went Wrong ${error.message}`);
+    return res.send(`Something Went Wrong ${error.message}`);
   }
 });
 // Register Users
@@ -141,7 +140,7 @@ app.get("**", (req, res) => {
   return res.send({ status: 503, message: `Page Not Found` });
 });
 
-// Server Port Listen 
+// Server Port Listen
 app.listen(8080, () => {
   const portListenUrl = `http://localhost:8080`;
   console.log("app listen on this port = ", portListenUrl);
