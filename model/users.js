@@ -1,9 +1,7 @@
 const mongoose = require('mongoose');
-// var Schema = mongoose.Schema();
-var Schema = mongoose.Schema
 
 // create an schema
-var userSchema = new Schema({
+var userSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
   address: String,
@@ -12,5 +10,5 @@ var userSchema = new Schema({
   password: String,
 });
 
-var userModel = mongoose.model("users", userSchema);
-module.exports = mongoose.model("Users", userModel);
+// var userModel = mongoose.model("users", userSchema);
+module.exports = mongoose.model("Users", userSchema);

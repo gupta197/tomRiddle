@@ -4,7 +4,7 @@ const express = require("express"),
   registerUser = [],
   mongo = require("mongodb"),
   connection = require("./database/database");
-// var userModel = require('./model/users');
+var userModel = require('./model/users');
 
 // support parsing of application/json type post data
 app.use(bodyParser.json());
@@ -80,7 +80,7 @@ app.post("/register", (req, res) => {
     });
   }
 });
-// Get ALl Users
+// Get ALL Users
 app.get("/users", (req, res) => {
   try {
     if (!registerUser.length) {
