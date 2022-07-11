@@ -3,9 +3,7 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   registerUser = [],
   mongo = require("mongodb"),
-  connection = require("./database/database"),
-  fetch = require('node-fetch');
-
+  connection = require("./database/database");
 var userModel = require('./model/users');
 
 // support parsing of application/json type post data
@@ -127,50 +125,14 @@ app.post("/login", (req, res) => {
     }
     return res.send({
       status: 404,
-      message: "User not Register yet .."
+      message: "User not Register yet ..",
     });
   } catch (error) {
-    return res.send({
-      status: 500,
-      message: `Something Went Wrong ${error.message}`
-    });
-  }
-});
-
-app.get("/weather",async (req,res)=>{
-  try {
-    // get Weather api key from Config file
-    let weather_API_key = '1b63bb63c92a040eaadb998c8617438d';
-    let params = {
-      lat : req.body.lat || 25.2744,
-      long : req.body.long || 133.7751,
-      weather_API_key : weather_API_key
-    }
-    console.log(params)
-    let response = await getWeatherAPICall(params);
-    console.log("response",response);
-    if(response){
-      return res.send({
-        status: 200,
-        message: "Get Weather Successfully",
-        response: response,
-      });
-    }else{
-      return res.send({
-        status: 404,
-        message: "Something went wrong ..",
-        response: response
-      });
-    }
-  } catch (error) {
-    console.log("Error in weather api",error)
     return res.send({
       status: 500,
       message: `Something Went Wrong ${error.message}`,
     });
   }
-
-
 });
 
 // URL not Found Api
@@ -183,26 +145,3 @@ app.listen(8080, () => {
   const portListenUrl = `http://localhost:8080`;
   console.log("app listen on this port = ", portListenUrl);
 });
-
-
-async function getWeatherAPICall(params){
-  let url  = `https://api.openweathermap.org/data/2.5/onecall?lat=${params.lat}&lon=${params.long}&appid=${params.weather_API_key}`;
-  try {
-    const response = await fetch(url);
-    let resposeJSON = response.json()
-    return resposeJSON;
-  } catch (error) {
-   console.log("error",error) 
-   return error;
-  }
-}
-
-/* 
-madasi5317
-madasi5317@shbiso.com
-tempEmail@10
-https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
-
-1b63bb63c92a040eaadb998c8617438d
-https://api.openweathermap.org/data/2.5/onecall?lat=25.2744&lon=133.7751&appid=406f949369cfb2a50a8098ea9829108b
- */
